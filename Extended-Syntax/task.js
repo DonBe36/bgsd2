@@ -1,5 +1,5 @@
 
-
+"use strict";
 function calculateQuadraticEquation(){
     let a = +window.a.value;
     let b = +window.b.value;
@@ -11,21 +11,18 @@ function calculateQuadraticEquation(){
 }
 
 function getResult(a,b,c){
-    "use strict";
     let D = b**2 - 4 * a * c;
-    let x; 
+    let x;
+    let x1 = ((-b - Math.sqrt(D))/(2 * a));
+    let x2 = ((-b + Math.sqrt(D))/(2 * a));
   if (D > 0) {
-    let x1;
-    let x2;
-    x1 = ((-b - D**2)/(2 * a));
-    x2 = ((-b + D**2)/(2 * a));
-    console.log("х имеет 2 значения"); 
     x = [x1, x2];
+    console.log("х имеет 2 значения"); 
     return x;
   } else if (D < 0) {
     x = null;
-    return x;
     console.log("x не имеет значений");
+    return x;
   } else if (D == 0) {
     x = -b/2 * a;
     console.log("уравнение имеет 1 значение");
@@ -41,25 +38,18 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
-  let allYers;
-  let result;
-  let year = dateOfBirthday.getFullYear();
-  console.log(year);
-  let today = new Date(2019);
-  console.log(today);
-
-  allYers = today - year;
-  console.log(allYers);
-    if (allYers >= 18) {
+  let result = new Date().getFullYear() - dateOfBirthday.getFullYear();
+  console.log(result);
+    if (result >= 18) {
     result = "Не желаете ли олд-фэшн, " + name + "?";
-    console.log(result);
     return result;
-  } else if (allYers < 18) {
+  } else if (result < 18) {
     result = "Сожалею," + name + ", но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!";
-    console.log(result);
     return result;
   };
+  console.log(result);
 };
+
 function calculateAverageRating(){
     let marks = window.marks.value.split("").map(Number).filter((n)=> !isNaN(n) && n > 0);
     let averageMark = getAverageMark(marks);
@@ -70,11 +60,10 @@ function getAverageMark(marks) {
   let totalArr;
   if (marks.length > 5) {
     totalArr = marks.slice(0, 5);
-    console.log(totalArr);
   } else {
     totalArr = marks;
-    console.log(totalArr);
   };
+  console.log(totalArr);
   const sumArr = totalArr.reduce((partial_sumArr, a) => partial_sumArr + a,0); 
   let averageMark = sumArr / marks.length;
   return averageMark;
